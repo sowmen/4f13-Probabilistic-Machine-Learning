@@ -1,0 +1,15 @@
+load('cw1a.mat');
+xs = linspace(-4, 4, 1000)';
+
+meanfunc = [];
+
+covfunc = @covSEiso;
+
+likfunc = @likGauss;
+
+hyp = struct('mean', [], 'cov', [-1 0], 'lik', 0);
+
+hyp2 = minimize(hyp, @gp, -100, @infGaussLik, meanfunc, covfunc, likfunc, x, y);
+
+% make predic
+[mu s2] = gp(hyp2, @infGaussLik, meanfunc, covfunc, likfunc, x, y, xs);

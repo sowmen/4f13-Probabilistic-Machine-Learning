@@ -9,7 +9,7 @@ likfunc = @likGauss;
 
 hyp = struct('mean', [], 'cov', [-1 0], 'lik', 0);
 
-hyp2 = minimize(hyp, @gp, -100, @infGaussLik, meanfunc, covfunc, likfunc, x, y);
+hyp2 = minimize(hyp, @gp, -200, @infGaussLik, meanfunc, covfunc, likfunc, x, y);
 
 % make predictions 
 [mu s2] = gp(hyp2, @infGaussLik, meanfunc, covfunc, likfunc, x, y, xs);
